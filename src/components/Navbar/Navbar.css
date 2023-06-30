@@ -1,18 +1,116 @@
 .navbar {
+    z-index: 999;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 72px;
+    box-sizing: border-box;
+    height: 70px;
     background-color: #262626;
+    color: white;
     display: flex;
     flex-direction: column;
 }
 
-.navbar .navbarButtons {
+.mobileNavbar {
+    z-index: 999;
+    visibility: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: #1f1f1f;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbarButtons {
     flex: 1;
     display: flex;
     flex-direction: row;
     padding: 12px;
-    gap: 8px;
+    padding-top: 11px;
+    gap: 12px;
+}
+.mobileNavbar .navbarButtons {
+    padding: 4px;
+    gap: 4px;
+}
+
+.navbarControlsPrimary,
+.navbarControlsSecondary,
+.navbarControlsTertiary,
+.navbarLeft,
+.navbarCenter,
+.navbarRight,
+.navbarAlt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.navbarCenter {
+    justify-content: center;
+}
+.navbarAlt {
+    flex: 1;
+}
+.navbarAlt,
+.navbarRight {
+    justify-content: right;
+}
+
+.navbarNowPlaying {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.navbarNowPlaying .navbarAlbumArt {
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    aspect-ratio: 1 / 1;
+}
+.navbarNowPlaying .navbarMediaInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    font-size: 11pt;
+    gap: 2px;
+}
+
+/* Mobile layout */
+@media screen and (max-width: 900px) {
+    .navbarAlt {
+        display: none !important;
+    }
+}
+@media screen and (max-width: 675px) {
+    .navbarAlt,
+    .navbarControlsTertiary {
+        display: none !important;
+    }
+}
+@media screen and (max-width: 550px) {
+    .mobileNavbar {
+        visibility: visible;
+    }
+
+    .navbar {
+        bottom: 64px;
+    }
+
+    .navbarAlt,
+    .navbarControlsSecondary,
+    .navbarControlsTertiary {
+        display: none !important;
+    }
 }
