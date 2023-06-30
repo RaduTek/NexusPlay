@@ -1,34 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import {
+    playerCurrentTime,
+    playerSeekTime,
+    playerTotalTime,
+} from "../../Atoms";
 import "./SeekBar.css";
+export const PlaybackStatus = ["play", "pause", "ended"];
 
-function SeekBar({ value, max, onChange, onSeek }) {
+function SeekBar() {
     const [seeking, setSeeking] = useState(false);
-
-    const onSeekValueChange = (event) => {
-        onChange(event.target.value, seeking);
-    };
+    const [value, setValue] = useState(0);
+    const currentTime = useAtomValue(playerCurrentTime);
+    const setSeekTime = useSetAtom(playerSeekTime);
+    const totalTime = useAtomValue(playerTotalTime);
 
     const allowedKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"];
 
-    const startSeeking = (event) => {
+    const valueChange = (e) => {
+        setValue(e.target.value);
+    };
+
+    const startSeeking = (e) => {
         if (
-            event.type === "mousedown" ||
-            event.type === "touchstart" ||
-            (event.type === "keydown" && allowedKeys.indexOf(event.key) !== -1)
+            e.type === "mousedown" ||
+            e.type === "touchstart" ||
+            (e.type === "keydown" && allowedKeys.indexOf(e.key) !== -1)
         )
             setSeeking(true);
     };
 
-    const endSeeking = (event) => {
+    const endSeeking = (e) => {
         if (
-            event.type === "mouseup" ||
-            event.type === "touchend" ||
-            (event.type === "keyup" && allowedKeys.indexOf(event.key) !== -1)
+            e.type === "mouseup" ||
+            e.type === "touchend" ||
+            (e.type === "keyup" && allowedKeys.indexOf(e.key) !== -1)
         ) {
             setSeeking(false);
-            onSeek(event.target.value);
+            setSeekTime(e.target.value);
         }
     };
+
+    useEffect(() => {
+        if (!seeking) setValue(currentTime);
+    }, [currentTime, seeking, value]);
 
     return (
         <div className="seekBar">
@@ -37,15 +52,15 @@ function SeekBar({ value, max, onChange, onSeek }) {
                     className="progressBar"
                     min={0}
                     value={value}
-                    max={max}
+                    max={totalTime}
                 ></progress>
             </div>
             <input
                 className="seekThumb"
                 value={value}
                 min={0}
-                max={max}
-                onChange={onSeekValueChange}
+                max={totalTime}
+                onChange={valueChange}
                 onMouseDown={startSeeking}
                 onMouseUp={endSeeking}
                 onKeyDown={startSeeking}
