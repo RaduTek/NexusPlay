@@ -77,20 +77,20 @@
 }
 
 /* Hovering effects */
-.playerScrubber:hover .progressBar {
+.seekBar:hover .progressBar {
     transform: scaleY(2);
 }
-.playerScrubber:hover .seekThumb::-webkit-slider-thumb {
+.seekBar:hover .seekThumb::-webkit-slider-thumb {
     transform: scale(1.25);
 }
-.playerScrubber:hover .seekThumb::-moz-range-thumb {
+.seekBar:hover .seekThumb::-moz-range-thumb {
     transform: scale(1.25);
 }
 
 /* Focus effects */
-.playerScrubber:focus-within .seekThumb::-webkit-slider-thumb {
+.seekBar:focus-within .seekThumb::-webkit-slider-thumb {
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
-.playerScrubber:focus-within .seekThumb::-moz-range-thumb {
+.seekBar:focus-within .seekThumb::-moz-range-thumb {
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }

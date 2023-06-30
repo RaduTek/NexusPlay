@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./PlayerScrubber.css";
+import "./SeekBar.css";
 
 function SeekBar({ value, max, onChange, onSeek }) {
     const [seeking, setSeeking] = useState(false);
