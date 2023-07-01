@@ -182,6 +182,7 @@ function NowPlaying() {
                                             getPlayerStatus === 0 ? 1 : 0
                                         );
                                     }}
+                                    shaded
                                 >
                                     Play
                                 </CircleButton>
