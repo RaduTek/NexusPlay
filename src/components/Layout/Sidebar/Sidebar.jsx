@@ -14,6 +14,7 @@ function Sidebar() {
     return (
         <div className="sideBar">
             <SquareButton
+                vertical
                 icon={mdiHomeOutline}
                 onClick={() => {
                     navigate("/home");
@@ -22,6 +23,7 @@ function Sidebar() {
                 Home
             </SquareButton>
             <SquareButton
+                vertical
                 icon={mdiMagnify}
                 onClick={() => {
                     navigate("/search");
@@ -29,8 +31,12 @@ function Sidebar() {
             >
                 Search
             </SquareButton>
-            <SquareButton icon={mdiBookshelf}>Library</SquareButton>
-            <SquareButton icon={mdiAccountCircleOutline}>Account</SquareButton>
+            <SquareButton vertical icon={mdiBookshelf}>
+                Library
+            </SquareButton>
+            <SquareButton vertical icon={mdiAccountCircleOutline}>
+                Account
+            </SquareButton>
         </div>
     );
 }

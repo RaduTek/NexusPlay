@@ -175,6 +175,7 @@ function Navbar() {
             >
                 <div className="navbarButtons">
                     <SquareButton
+                        vertical
                         icon={mdiHomeOutline}
                         onClick={() => {
                             navigate("/home");
@@ -183,6 +184,7 @@ function Navbar() {
                         Home
                     </SquareButton>
                     <SquareButton
+                        vertical
                         icon={mdiMagnify}
                         onClick={() => {
                             navigate("/search");
@@ -191,6 +193,7 @@ function Navbar() {
                         Search
                     </SquareButton>
                     <SquareButton
+                        vertical
                         icon={mdiPlaylistMusicOutline}
                         onClick={() => {
                             setNowPlayingVisible(!getNowPlayingVisible);
@@ -198,8 +201,10 @@ function Navbar() {
                     >
                         Now Playing
                     </SquareButton>
-                    <SquareButton icon={mdiBookshelf}>Library</SquareButton>
-                    <SquareButton icon={mdiAccountCircleOutline}>
+                    <SquareButton vertical icon={mdiBookshelf}>
+                        Library
+                    </SquareButton>
+                    <SquareButton vertical icon={mdiAccountCircleOutline}>
                         Account
                     </SquareButton>
                 </div>
