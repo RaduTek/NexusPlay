@@ -21,9 +21,11 @@ import SquareButton from "../UI/SquareButton";
 import { useAtom } from "jotai";
 import { playerStatus } from "../../Atoms";
 import AlbumArt from "../UI/AlbumArt";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -129,9 +131,28 @@ function Navbar() {
             </div>
             <div className="mobileNavbar">
                 <div className="navbarButtons">
-                    <SquareButton icon={mdiHomeOutline}>Home</SquareButton>
-                    <SquareButton icon={mdiMagnify}>Search</SquareButton>
-                    <SquareButton icon={mdiPlaylistMusicOutline}>
+                    <SquareButton
+                        icon={mdiHomeOutline}
+                        onClick={() => {
+                            navigate("/home");
+                        }}
+                    >
+                        Home
+                    </SquareButton>
+                    <SquareButton
+                        icon={mdiMagnify}
+                        onClick={() => {
+                            navigate("/search");
+                        }}
+                    >
+                        Search
+                    </SquareButton>
+                    <SquareButton
+                        icon={mdiPlaylistMusicOutline}
+                        onClick={() => {
+                            setNowPlayingVisible(!getNowPlayingVisible);
+                        }}
+                    >
                         Now Playing
                     </SquareButton>
                     <SquareButton icon={mdiBookshelf}>Library</SquareButton>
