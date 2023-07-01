@@ -1,6 +1,6 @@
 import "./Navbar.css";
-import NavSeekBar from "../Player/NavSeekBar";
-import CircleButton from "../UI/CircleButton";
+import NavSeekBar from "../../Player/NavSeekBar";
+import CircleButton from "../../UI/CircleButton";
 import {
     mdiAccountCircleOutline,
     mdiBookshelf,
@@ -17,10 +17,10 @@ import {
     mdiStop,
     mdiVolumeHigh,
 } from "@mdi/js";
-import SquareButton from "../UI/SquareButton";
+import SquareButton from "../../UI/SquareButton";
 import { useAtom } from "jotai";
-import { playerStatus, nowPlayingVisible } from "../../Atoms";
-import AlbumArt from "../UI/AlbumArt";
+import { playerStatus, nowPlayingVisible } from "../../../Atoms";
+import AlbumArt from "../../UI/AlbumArt";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
