@@ -17,6 +17,9 @@
     transform: translateX(100%);
     visibility: hidden;
 }
+.nowPlaying.hidden .tabPage {
+    visibility: hidden !important;
+}
 
 .nowPlaying .topButtons {
     display: flex;
