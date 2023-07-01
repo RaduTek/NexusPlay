@@ -9,15 +9,17 @@ function StackGroup({ children }) {
 }
 
 function StackItem({ className = "", focusable = true, onClick, children }) {
-    return focusable ? (
-        <button
-            className={"stackItem focusable " + className}
+    return (
+        <div
+            className={
+                "stackItem " + (focusable ? "focusable " : "") + className
+            }
+            tabIndex={focusable ? 0 : -1}
+            role={focusable ? "button" : ""}
             onClick={onClick}
         >
             {children}
-        </button>
-    ) : (
-        <div className={"stackItem " + className}>{children}</div>
+        </div>
     );
 }
 
