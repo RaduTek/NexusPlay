@@ -1,0 +1,72 @@
+.tabView {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.tabView .tabPages {
+    flex: 1;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.tabView .tabPages .tabPage {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    transition: transform 0.3s, visibility 0.3s, opacity 0.3s;
+}
+.tabView .tabPages .tabPage.selected {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+}
+.tabView .tabPages .tabPage.toLeft {
+    transform: translateX(-100%);
+}
+.tabView .tabPages .tabPage.toRight {
+    transform: translateX(100%);
+}
+
+.tabView .tabButtons {
+    display: flex;
+    flex-direction: row;
+}
+.tabView.aligntop .tabButtons {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.tabView.alignbottom .tabButtons {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabView .tabButtons button {
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    text-align: center;
+    font-family: var(--primary-font);
+    font-size: var(--primary-font-size);
+    color: #ddd;
+    padding: 14px 2px;
+    flex: 1;
+}
+.tabView .tabButtons button.selected {
+    color: white;
+}
+.tabView.aligntop .tabButtons button.selected {
+    box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.7);
+}
+.tabView.alignbottom .tabButtons button.selected {
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 675px) {
+    .tabView .tabButtons button {
+        padding: 20px 2px;
+    }
+}
