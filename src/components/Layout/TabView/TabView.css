@@ -45,15 +45,20 @@
 }
 
 .tabView .tabButtons button {
+    /* cursor: pointer; */
     border: none;
     border-radius: 0;
     background-color: transparent;
+    transition: background-color 0.2s;
     text-align: center;
     font-family: var(--primary-font);
     font-size: var(--primary-font-size);
     color: #ddd;
     padding: 14px 2px;
     flex: 1;
+}
+.tabView .tabButtons button:active {
+    background-color: rgba(255, 255, 255, 0.17);
 }
 .tabView .tabButtons button.selected {
     color: white;

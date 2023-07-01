@@ -26,6 +26,7 @@ function TabView({ align = "top", defaultPage = 0, children }) {
                                     " " +
                                     getStateClassName(index)
                                 }
+                                key={index}
                             >
                                 {tabPage.props.children}
                             </div>
