@@ -1,0 +1,110 @@
+.nowPlaying {
+    z-index: 990;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: var(--navbar-total-height);
+    width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #262626;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, visibility 0.3s;
+}
+
+.nowPlaying.hidden {
+    transform: translateX(100%);
+    visibility: hidden;
+}
+
+.nowPlaying .topButtons {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+}
+
+.nowPlaying .topButtons .buttonsLeft,
+.nowPlaying .topButtons .buttonsRight {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+.nowPlaying .topButtons .buttonsRight {
+    align-items: end;
+}
+
+.nowPlaying .tabView {
+    flex: 2;
+}
+
+.nowPlaying .nowPlayingPage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.nowPlayingPage .albumArtList {
+    position: relative;
+}
+
+.nowPlayingPage .albumArtList .albumArtFrame {
+    box-sizing: border-box;
+    padding: 36px;
+    border-radius: 12px;
+    width: 100%;
+    flex-grow: 500px;
+    aspect-ratio: 1 / 1;
+}
+
+.albumArtList .albumArtFrame .albumArtInner {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.nowPlayingPage .songDetails {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.nowPlayingPage .songDetails .songDetailsText {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding-top: 6px;
+}
+
+.nowPlayingPage .songDetails .songTitle {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.nowPlayingPage .playbackControls {
+    padding: 24px 36px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: auto;
+}
+
+@media screen and (max-width: 550px) {
+    .nowPlaying {
+        z-index: 1000;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+    .nowPlaying.hidden {
+        transform: translateY(100%);
+    }
+}
