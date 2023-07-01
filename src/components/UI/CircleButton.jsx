@@ -10,6 +10,7 @@ function CircleButton({
     padding = 6,
     tooltip = "",
     tooltipPosition = "topLeft",
+    toggle = false,
     onClick,
     children,
 }) {
@@ -18,7 +19,9 @@ function CircleButton({
             className={
                 "circleButton " +
                 className +
-                (iconOnly ? " icon tooltipHost" : "")
+                (iconOnly ? " icon" : "") +
+                (tooltip ? " tooltipHost" : "") +
+                (toggle ? " toggleOn" : "")
             }
             onClick={onClick}
             aria-label={tooltip ? tooltip : children}
