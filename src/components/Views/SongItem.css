@@ -26,15 +26,19 @@
     color: #bbb;
 }
 
+.songDetails .songInfo > span {
+    text-overflow: ellipsis;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .songDetails .infoSeparator {
     display: none;
     margin: 0 6px;
 }
 
 @media screen and (max-width: 700px) {
-    .songItem .songAlbumArt {
-        --albumArtSize: 50px !important;
-    }
     .songItem .songDetails {
         flex-direction: column;
     }
@@ -44,5 +48,8 @@
     }
     .songDetails .infoSeparator {
         display: initial;
+    }
+    .songItem .songAlbumArt {
+        --albumArtSize: 50px !important;
     }
 }
