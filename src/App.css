@@ -1,19 +1,37 @@
 :root {
+    --primary-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+
     --accent-color: #1099b2;
     --accent-color-light: #26b9d3;
     --accent-color-dark: #04849a;
+
+    --max-content-width: 900px;
+
+    --page-back-color: #0a0a0a;
+    --page-fore-color: white;
+
+    --navbar-height: 70px;
+    --navbar-back-color: #262626;
+    --navbar-fore-color: white;
+
+    --navbar-mobile-height: 64px;
+    --navbar-mobile-back-color: #1f1f1f;
+    --navbar-mobile-fore-color: white;
+
+    --tooltip-font-size: 11pt;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    font-family: var(--primary-font);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    background-color: #0a0a0a;
+    background-color: var(--page-back-color);
+    color: var(--page-fore-color);
 }
 
 code {
