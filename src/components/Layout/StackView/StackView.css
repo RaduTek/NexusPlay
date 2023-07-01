@@ -1,0 +1,43 @@
+.stackView {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: baseline;
+    gap: 12px;
+}
+
+.stackGroup {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.13);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stackItem {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: var(--primary-font);
+    font-size: inherit;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px;
+    gap: 8px;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.stackItem:last-child {
+    border-bottom: none;
+}
+.stackItem.focusable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.stackItem.focusable:active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
