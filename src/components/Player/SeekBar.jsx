@@ -43,33 +43,40 @@ function SeekBar() {
 
     useEffect(() => {
         if (!seeking) setValue(currentTime);
+        console.log(currentTime);
     }, [currentTime, seeking, value]);
 
     return (
-        <div className="seekBar">
-            <div className="progressBarWrapper">
-                <progress
-                    className="progressBar"
-                    min={0}
+        <div className="seekBarWrap">
+            <div className="seekBar">
+                <div className="progressBarWrapper">
+                    <progress
+                        className="progressBar"
+                        min={0}
+                        value={value}
+                        max={totalTime}
+                    ></progress>
+                </div>
+                <input
+                    className="seekThumb"
                     value={value}
+                    min={0}
                     max={totalTime}
-                ></progress>
+                    onChange={valueChange}
+                    onMouseDown={startSeeking}
+                    onMouseUp={endSeeking}
+                    onKeyDown={startSeeking}
+                    onKeyUp={endSeeking}
+                    onTouchStart={startSeeking}
+                    onTouchEnd={endSeeking}
+                    type="range"
+                    step="1"
+                ></input>
             </div>
-            <input
-                className="seekThumb"
-                value={value}
-                min={0}
-                max={totalTime}
-                onChange={valueChange}
-                onMouseDown={startSeeking}
-                onMouseUp={endSeeking}
-                onKeyDown={startSeeking}
-                onKeyUp={endSeeking}
-                onTouchStart={startSeeking}
-                onTouchEnd={endSeeking}
-                type="range"
-                step="1"
-            ></input>
+            <div className="timeStamps">
+                <span>0:00</span>
+                <span>4:20</span>
+            </div>
         </div>
     );
 }
