@@ -24,7 +24,15 @@
 
     --navbar-total-height: var(--navbar-height);
 
+    --nowplaying-desktop-width: min(max(25vw, 300px), 400px);
+    --sidebar-desktop-width: 70px;
+
     --tooltip-font-size: 11pt;
+}
+
+html,
+body {
+    overscroll-behavior: none;
 }
 
 body {
