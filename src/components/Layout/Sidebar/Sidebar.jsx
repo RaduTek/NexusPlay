@@ -12,7 +12,7 @@ function Sidebar() {
     const navigate = useNavigate();
 
     return (
-        <div className="libraryPane">
+        <div className="sideBar">
             <SquareButton
                 icon={mdiHomeOutline}
                 onClick={() => {

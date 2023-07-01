@@ -1,4 +1,4 @@
-.libraryPane {
+.sideBar {
     z-index: 990;
     position: fixed;
     top: 0;
@@ -15,7 +15,7 @@
     box-shadow: inset -1px 0 0 0 rgba(255, 255, 255, 0.1);
 }
 
-.libraryPane button {
+.sideBar button {
     flex: 0;
     width: 100%;
     padding: 8px 0;
@@ -23,7 +23,7 @@
 }
 
 @media screen and (max-width: 550px) {
-    .libraryPane {
+    .sideBar {
         visibility: hidden;
     }
 }
