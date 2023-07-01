@@ -1,4 +1,7 @@
 .tooltip {
+    text-align: center;
+    font-family: var(--primary-font);
+    font-size: var(--tooltip-font-size);
     position: absolute;
     opacity: 0;
     visibility: hidden;
