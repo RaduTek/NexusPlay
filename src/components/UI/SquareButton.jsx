@@ -1,10 +1,21 @@
 import Icon from "@mdi/react";
 import "./SquareButton.css";
 
-function SquareButton({ icon, iconSize = 1.4, onClick, children }) {
+function SquareButton({
+    className = "",
+    icon,
+    iconSize = 1.4,
+    onClick,
+    children,
+    vertical,
+}) {
     return (
         <button
-            className="squareButton"
+            className={
+                className +
+                " squareButton  " +
+                (vertical ? "vertical" : "horizontal")
+            }
             onClick={onClick}
             aria-label={children}
         >

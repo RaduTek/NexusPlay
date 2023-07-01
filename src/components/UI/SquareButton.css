@@ -3,7 +3,6 @@
     border: 0;
     outline: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0;
@@ -15,15 +14,23 @@
     padding-bottom: 2px;
     border-radius: 12px;
     transition: background-color 0.2s, box-shadow 0.2s;
-    flex: 1;
 }
 .squareButton.icon {
     border-radius: 50%;
     aspect-ratio: 1 / 1;
 }
+.squareButton.vertical {
+    flex-direction: column;
+}
+.squareButton.horizontal {
+    flex-direction: row;
+}
 
 .squareButton > span {
     padding: 0 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .squareButton > svg {
     transition: transform 0.2s;
@@ -38,10 +45,4 @@
 }
 .squareButton:active > svg {
     transform: scale(0.85);
-}
-
-@media screen and (max-width: 450px) {
-    .squareButton > span {
-        display: none;
-    }
 }
