@@ -35,8 +35,8 @@ function AudioPlayer() {
 
     return (
         <audio
+            autoPlay={false}
             ref={audioPlayer}
-            // controls
             src={audioFile}
             onPlay={updatePlaybackStatus}
             onPause={updatePlaybackStatus}
