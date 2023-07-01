@@ -13,6 +13,9 @@
     border-radius: 24px;
     transition: background-color 0.2s, box-shadow 0.2s;
 }
+.circleButton.shaded {
+    background-color: rgba(255, 255, 255, 0.08);
+}
 .circleButton.icon {
     border-radius: 50%;
     aspect-ratio: 1 / 1;

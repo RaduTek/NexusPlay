@@ -13,12 +13,14 @@ function CircleButton({
     toggle = false,
     onClick,
     children,
+    shaded,
 }) {
     return (
         <button
             className={
                 "circleButton " +
                 className +
+                (shaded ? " shaded" : "") +
                 (iconOnly ? " icon" : "") +
                 (tooltip ? " tooltipHost" : "") +
                 (toggle ? " toggleOn" : "")
