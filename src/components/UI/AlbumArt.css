@@ -1,0 +1,61 @@
+.albumArtWrap {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    aspect-ratio: 1 / 1;
+    width: var(--albumArtSize);
+    height: var(--albumArtSize);
+    overflow: hidden;
+    transition: background-color 0.2s;
+}
+.albumArtWrap::after {
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: " ";
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.albumArtWrap .albumArtImg {
+    width: var(--albumArtSize);
+    height: var(--albumArtSize);
+    aspect-ratio: 1 / 1;
+    transition: filter 0.2s;
+}
+
+.albumArtWrap .albumIconWrap {
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.albumArtWrap.hasOverlay .albumIconWrap svg {
+    transition: transform 0.2s;
+}
+
+*:hover > .albumArtWrap.hasOverlay,
+.albumArtWrap.hasOverlay.permanentOverlay {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+*:hover > .albumArtWrap.hasOverlay .albumArtImg,
+.albumArtWrap.hasOverlay.permanentOverlay .albumArtImg {
+    filter: brightness(0.6);
+}
+*:hover > .albumArtWrap.hasOverlay .albumIconWrap,
+.albumArtWrap.hasOverlay.permanentOverlay .albumIconWrap {
+    opacity: 1;
+}
+*:active > .albumArtWrap.hasOverlay .albumIconWrap svg {
+    transform: scale(0.85);
+}
