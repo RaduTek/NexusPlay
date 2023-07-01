@@ -2,4 +2,14 @@
     margin: 0 auto;
     max-width: var(--max-content-width);
     padding-bottom: var(--navbar-total-height);
+    transition: padding 0.3s;
+}
+
+@media screen and (min-width: 550px) {
+    .pageHost {
+        padding-left: var(--librarypane-desktop-width);
+    }
+    .pageHost.nowPlayingVisible {
+        padding-right: var(--nowplaying-desktop-width);
+    }
 }
