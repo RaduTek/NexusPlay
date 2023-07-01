@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import SeekBar from "../Player/SeekBar";
+import NavSeekBar from "../Player/NavSeekBar";
 import CircleButton from "../UI/CircleButton";
 import {
     mdiAccountCircleOutline,
@@ -32,7 +32,7 @@ function Navbar() {
     return (
         <>
             <div className="navbar" id="navbar">
-                <SeekBar />
+                <NavSeekBar />
                 <div className="navbarButtons">
                     <div className="navbarLeft navbarControlsSecondary">
                         <CircleButton
