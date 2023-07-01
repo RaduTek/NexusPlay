@@ -1,11 +1,11 @@
-.seekBar {
+.navSeekBar {
     position: relative;
     width: 100%;
     height: 5px;
 }
 
 /* Progress bar */
-.progressBarWrapper {
+.navSeekBar .progressBarWrapper {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@
     padding: 0 6px;
     display: flex;
 }
-.progressBar {
+.navSeekBar .progressBar {
     flex-grow: 1;
     margin: 0;
     padding: 0;
@@ -27,20 +27,20 @@
 }
 
 /* Chromium styling */
-.progressBar::-webkit-progress-bar {
+.navSeekBar .progressBar::-webkit-progress-bar {
     background-color: #303030;
 }
-.progressBar::-webkit-progress-value {
+.navSeekBar .progressBar::-webkit-progress-value {
     background-color: var(--accent-color);
 }
 
 /* Firefox styling */
-.progressBar::-moz-progress-bar {
+.navSeekBar .progressBar::-moz-progress-bar {
     background-color: var(--accent-color);
 }
 
 /* Seeking thumb */
-.seekThumb {
+.navSeekBar .seekThumb {
     position: absolute;
     top: 0;
     left: 0;
@@ -58,7 +58,7 @@
     transition: transform 0.2s;
 }
 
-.seekThumb::-webkit-slider-thumb {
+.navSeekBar .seekThumb::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
@@ -67,7 +67,7 @@
     background-color: var(--accent-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
-.seekThumb::-moz-range-thumb {
+.navSeekBar .seekThumb::-moz-range-thumb {
     width: 12px;
     height: 12px;
     border: none;
@@ -77,20 +77,20 @@
 }
 
 /* Hovering effects */
-.seekBar:hover .progressBar {
+.navSeekBar:hover .progressBar {
     transform: scaleY(2);
 }
-.seekBar:hover .seekThumb::-webkit-slider-thumb {
+.navSeekBar:hover .seekThumb::-webkit-slider-thumb {
     transform: scale(1.25);
 }
-.seekBar:hover .seekThumb::-moz-range-thumb {
+.navSeekBar:hover .seekThumb::-moz-range-thumb {
     transform: scale(1.25);
 }
 
 /* Focus effects */
-.seekBar:focus-within .seekThumb::-webkit-slider-thumb {
+.navSeekBar:focus-within .seekThumb::-webkit-slider-thumb {
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
-.seekBar:focus-within .seekThumb::-moz-range-thumb {
+.navSeekBar:focus-within .seekThumb::-moz-range-thumb {
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }

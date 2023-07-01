@@ -46,7 +46,7 @@ function NavSeekBar() {
     }, [currentTime, seeking, value]);
 
     return (
-        <div className="seekBar">
+        <div className="navSeekBar">
             <div className="progressBarWrapper">
                 <progress
                     className="progressBar"
