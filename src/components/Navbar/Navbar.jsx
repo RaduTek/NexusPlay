@@ -19,12 +19,14 @@ import {
 } from "@mdi/js";
 import SquareButton from "../UI/SquareButton";
 import { useAtom } from "jotai";
-import { playerStatus } from "../../Atoms";
+import { playerStatus, nowPlayingVisible } from "../../Atoms";
 import AlbumArt from "../UI/AlbumArt";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
+    const [getNowPlayingVisible, setNowPlayingVisible] =
+        useAtom(nowPlayingVisible);
     const navigate = useNavigate();
 
     return (
@@ -123,6 +125,10 @@ function Navbar() {
                             icon={mdiPlaylistMusicOutline}
                             tooltip="Now Playing"
                             tooltipPosition="topRight"
+                            toggle={getNowPlayingVisible}
+                            onClick={() => {
+                                setNowPlayingVisible(!getNowPlayingVisible);
+                            }}
                         >
                             Now Playing
                         </CircleButton>
