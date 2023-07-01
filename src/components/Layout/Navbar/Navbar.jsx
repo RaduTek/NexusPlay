@@ -18,33 +18,65 @@ import {
     mdiVolumeHigh,
 } from "@mdi/js";
 import SquareButton from "../../UI/SquareButton";
-import { useAtom } from "jotai";
-import { playerStatus, nowPlayingVisible } from "../../../Atoms";
+import { useAtom, useSetAtom } from "jotai";
+import {
+    playerStatus,
+    nowPlayingVisible,
+    nowPlayingDragY,
+} from "../../../Atoms";
 import AlbumArt from "../../UI/AlbumArt";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
     const [getNowPlayingVisible, setNowPlayingVisible] =
         useAtom(nowPlayingVisible);
     const navigate = useNavigate();
+    const [dragStartY, setDragStartY] = useState(0);
+    const setDragCurrentY = useSetAtom(nowPlayingDragY);
+
+    const dragStart = (e) => {
+        if (window.innerWidth > 550) return;
+        setDragStartY(e.touches[0].clientY);
+        setDragCurrentY(e.touches[0].clientY);
+    };
+    const dragMove = (e) => {
+        if (window.innerWidth > 550) return;
+        if (
+            !getNowPlayingVisible &&
+            dragStartY - e.changedTouches[0].clientY > 40
+        )
+            setNowPlayingVisible(true);
+        setDragCurrentY(e.changedTouches[0].clientY);
+    };
+    const dragEnd = (e) => {
+        if (window.innerWidth > 550) return;
+        if (
+            dragStartY - e.changedTouches[0].clientY <
+            window.innerHeight / 3.5
+        ) {
+            setNowPlayingVisible(false);
+        }
+        setDragCurrentY(0);
+        setDragStartY(0);
+    };
 
     return (
         <>
-            <div className="navbar" id="navbar">
+            <div
+                className="navbar"
+                id="navbar"
+                onTouchStart={dragStart}
+                onTouchMove={dragMove}
+                onTouchEnd={dragEnd}
+            >
                 <NavSeekBar />
                 <div className="navbarButtons">
-                    <div className="navbarLeft navbarControlsSecondary">
-                        <CircleButton
-                            iconOnly
-                            icon={mdiBookshelf}
-                            tooltip="My Library"
-                        >
-                            Library
-                        </CircleButton>
+                    <div className="navbarLeft">
+                        <AlbumArt />
                     </div>
                     <div className="navbarNowPlaying">
-                        <AlbumArt />
                         <div className="navbarMediaInfo">
                             <div className="navbarSongTitle">Song Title</div>
                             <div className="navbarSongInfo">Artist - Album</div>
@@ -135,7 +167,12 @@ function Navbar() {
                     </div>
                 </div>
             </div>
-            <div className="mobileNavbar">
+            <div
+                className="mobileNavbar"
+                onTouchStart={dragStart}
+                onTouchMove={dragMove}
+                onTouchEnd={dragEnd}
+            >
                 <div className="navbarButtons">
                     <SquareButton
                         icon={mdiHomeOutline}
