@@ -1,7 +1,6 @@
 import "./Navbar.css";
-import noAlbumCover from "../../images/noAlbumCover.svg";
 import SeekBar from "../Player/SeekBar";
-import NavbarButton from "./NavbarButton";
+import CircleButton from "../UI/CircleButton";
 import {
     mdiAccountCircleOutline,
     mdiBookshelf,
@@ -18,9 +17,10 @@ import {
     mdiStop,
     mdiVolumeHigh,
 } from "@mdi/js";
-import MobileNavbarButton from "./MobileNavbarButton";
+import SquareButton from "../UI/SquareButton";
 import { useAtom } from "jotai";
 import { playerStatus } from "../../Atoms";
+import AlbumArt from "../UI/AlbumArt";
 
 function Navbar() {
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
@@ -31,16 +31,16 @@ function Navbar() {
                 <SeekBar />
                 <div className="navbarButtons">
                     <div className="navbarLeft navbarControlsSecondary">
-                        <NavbarButton icon={mdiBookshelf} tooltip="My Library">
+                        <CircleButton
+                            iconOnly
+                            icon={mdiBookshelf}
+                            tooltip="My Library"
+                        >
                             Library
-                        </NavbarButton>
+                        </CircleButton>
                     </div>
                     <div className="navbarNowPlaying">
-                        <img
-                            className="navbarAlbumArt"
-                            src={noAlbumCover}
-                            alt="Album Art"
-                        />
+                        <AlbumArt />
                         <div className="navbarMediaInfo">
                             <div className="navbarSongTitle">Song Title</div>
                             <div className="navbarSongInfo">Artist - Album</div>
@@ -48,15 +48,23 @@ function Navbar() {
                     </div>
                     <div className="navbarCenter">
                         <div className="navbarControlsTertiary">
-                            <NavbarButton icon={mdiRepeat} iconSize={1}>
+                            <CircleButton
+                                iconOnly
+                                icon={mdiRepeat}
+                                iconSize={1}
+                            >
                                 Repeat
-                            </NavbarButton>
+                            </CircleButton>
                         </div>
                         <div className="navbarControlsPrimary">
-                            <NavbarButton icon={mdiSkipPreviousOutline}>
+                            <CircleButton
+                                iconOnly
+                                icon={mdiSkipPreviousOutline}
+                            >
                                 Previous
-                            </NavbarButton>
-                            <NavbarButton
+                            </CircleButton>
+                            <CircleButton
+                                iconOnly
                                 icon={
                                     getPlayerStatus === 0
                                         ? mdiPause
@@ -72,63 +80,64 @@ function Navbar() {
                                 }}
                             >
                                 Play
-                            </NavbarButton>
-                            <NavbarButton icon={mdiSkipNextOutline}>
+                            </CircleButton>
+                            <CircleButton iconOnly icon={mdiSkipNextOutline}>
                                 Next
-                            </NavbarButton>
+                            </CircleButton>
                         </div>
                         <div className="navbarControlsTertiary">
-                            <NavbarButton icon={mdiShuffle} iconSize={1}>
+                            <CircleButton
+                                iconOnly
+                                icon={mdiShuffle}
+                                iconSize={1}
+                            >
                                 Shuffle
-                            </NavbarButton>
+                            </CircleButton>
                         </div>
                     </div>
                     <div className="navbarAlt">
-                        <NavbarButton
+                        <CircleButton
+                            iconOnly
                             icon={mdiDotsVertical}
                             iconSize={1.1}
                             tooltip="Menu"
                             tooltipPosition="topRight"
                         >
                             Menu
-                        </NavbarButton>
-                        <NavbarButton
+                        </CircleButton>
+                        <CircleButton
+                            iconOnly
                             icon={mdiVolumeHigh}
                             iconSize={1.1}
                             tooltip="Volume"
                             tooltipPosition="topRight"
                         >
                             Volume
-                        </NavbarButton>
+                        </CircleButton>
                     </div>
                     <div className="navbarRight navbarControlsSecondary">
-                        <NavbarButton
+                        <CircleButton
+                            iconOnly
                             icon={mdiPlaylistMusicOutline}
                             tooltip="Now Playing"
                             tooltipPosition="topRight"
                         >
                             Now Playing
-                        </NavbarButton>
+                        </CircleButton>
                     </div>
                 </div>
             </div>
             <div className="mobileNavbar">
                 <div className="navbarButtons">
-                    <MobileNavbarButton icon={mdiHomeOutline}>
-                        Home
-                    </MobileNavbarButton>
-                    <MobileNavbarButton icon={mdiMagnify}>
-                        Search
-                    </MobileNavbarButton>
-                    <MobileNavbarButton icon={mdiPlaylistMusicOutline}>
+                    <SquareButton icon={mdiHomeOutline}>Home</SquareButton>
+                    <SquareButton icon={mdiMagnify}>Search</SquareButton>
+                    <SquareButton icon={mdiPlaylistMusicOutline}>
                         Now Playing
-                    </MobileNavbarButton>
-                    <MobileNavbarButton icon={mdiBookshelf}>
-                        Library
-                    </MobileNavbarButton>
-                    <MobileNavbarButton icon={mdiAccountCircleOutline}>
+                    </SquareButton>
+                    <SquareButton icon={mdiBookshelf}>Library</SquareButton>
+                    <SquareButton icon={mdiAccountCircleOutline}>
                         Account
-                    </MobileNavbarButton>
+                    </SquareButton>
                 </div>
             </div>
         </>
