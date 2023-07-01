@@ -56,8 +56,30 @@
     box-sizing: border-box;
     padding: 0 10%;
     border-radius: 12px;
-    width: 100%;
-    /* aspect-ratio: 1 / 1; */
+    width: min(100%, 60vh);
+}
+@media screen and (max-height: 720px) {
+    .nowPlayingPage .albumArtList .albumArtFrame {
+        width: 50vh;
+    }
+}
+@media screen and (max-height: 600px) {
+    .nowPlayingPage .albumArtList .albumArtFrame {
+        width: 45vh;
+    }
+}
+@media screen and (max-height: 580px) {
+    .nowPlayingPage .albumArtList .albumArtFrame {
+        width: 40vh;
+    }
+}
+@media screen and (max-height: 480px) {
+    .nowPlayingPage .albumArtList .albumArtFrame {
+        width: 0;
+    }
+    .nowPlayingPage .playbackControls {
+        padding-top: 0;
+    }
 }
 
 .albumArtList .albumArtFrame .albumArtInner {
