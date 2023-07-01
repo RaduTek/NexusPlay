@@ -5,11 +5,14 @@
     transition: padding 0.3s;
 }
 
-@media screen and (min-width: 550px) {
-    .pageHost {
-        padding-left: var(--librarypane-desktop-width);
-    }
+@media screen and (min-width: 900px) {
     .pageHost.nowPlayingVisible {
         padding-right: var(--nowplaying-desktop-width);
+    }
+}
+
+@media screen and (min-width: 550px) {
+    .pageHost {
+        padding-left: var(--sidebar-desktop-width);
     }
 }
