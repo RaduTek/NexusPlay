@@ -1,0 +1,48 @@
+.songItem .songAlbumArt {
+    --albumArtSize: 44px !important;
+}
+.songItem .songDetails {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    padding-left: 2px;
+}
+
+.songDetails .songTitle,
+.songDetails .songArtist,
+.songDetails .songAlbum {
+    flex: 1;
+    text-overflow: ellipsis;
+}
+
+.songDetails .songTitle {
+    font-weight: bold;
+}
+
+.songDetails .songInfo {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    color: #bbb;
+}
+
+.songDetails .infoSeparator {
+    display: none;
+    margin: 0 6px;
+}
+
+@media screen and (max-width: 700px) {
+    .songItem .songAlbumArt {
+        --albumArtSize: 50px !important;
+    }
+    .songItem .songDetails {
+        flex-direction: column;
+    }
+    .songDetails .songArtist,
+    .songDetails .songAlbum {
+        flex: initial;
+    }
+    .songDetails .infoSeparator {
+        display: initial;
+    }
+}
