@@ -7,10 +7,10 @@ import "./SongItem.css";
 function SongItem({ songId, title, artist, album, duration, albumArt = null }) {
     return (
         <StackItem
+            focusable="true"
             className="songItem"
             onClick={(e) => {
                 e.stopPropagation();
-                console.log("SongItem clicked!");
             }}
         >
             <AlbumArt
@@ -35,7 +35,6 @@ function SongItem({ songId, title, artist, album, duration, albumArt = null }) {
                 padding={10}
                 onClick={(e) => {
                     e.stopPropagation();
-                    console.log("SongItem More options clicked!");
                 }}
             >
                 More Options
