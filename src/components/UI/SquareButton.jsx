@@ -8,13 +8,15 @@ function SquareButton({
     onClick,
     children,
     vertical,
+    toggleOn = false,
 }) {
     return (
         <button
             className={
                 className +
                 " squareButton  " +
-                (vertical ? "vertical" : "horizontal")
+                (vertical ? "vertical" : "horizontal") +
+                (toggleOn ? " toggleOn" : "")
             }
             onClick={onClick}
             aria-label={children}
