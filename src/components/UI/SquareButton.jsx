@@ -9,6 +9,7 @@ function SquareButton({
     children,
     vertical,
     toggleOn = false,
+    padding = 0,
 }) {
     return (
         <button
@@ -18,6 +19,7 @@ function SquareButton({
                 (vertical ? "vertical" : "horizontal") +
                 (toggleOn ? " toggleOn" : "")
             }
+            style={{ padding: padding + "px" }}
             onClick={onClick}
             aria-label={children}
         >
