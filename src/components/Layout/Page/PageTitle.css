@@ -6,6 +6,10 @@
     padding: 4px 0;
 }
 
+.pageTitle .backButton {
+    margin: -4px;
+}
+
 .pageTitle > span {
     font-size: 22pt;
     font-weight: 600;
