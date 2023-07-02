@@ -3,8 +3,7 @@
     flex-direction: row;
     align-items: end;
     gap: 8px;
-    padding-top: 4px;
-    padding-bottom: 18px;
+    padding: 4px 0;
 }
 
 .pageTitle > span {
