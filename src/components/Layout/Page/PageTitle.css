@@ -1,0 +1,13 @@
+.pageTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 8px;
+    padding-top: 4px;
+    padding-bottom: 18px;
+}
+
+.pageTitle > span {
+    font-size: 22pt;
+    font-weight: 600;
+}
