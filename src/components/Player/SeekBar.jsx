@@ -43,7 +43,6 @@ function SeekBar() {
 
     useEffect(() => {
         if (!seeking) setValue(currentTime);
-        console.log(currentTime);
     }, [currentTime, seeking, value]);
 
     return (
