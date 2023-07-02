@@ -26,7 +26,7 @@ function SongItem({ songId, title, artist, album, duration, albumArt = null }) {
                     <span className="songAlbum">{album}</span>
                 </span>
             </div>
-            <span>{duration}</span>
+            <span className="songDuration">{duration}</span>
             <CircleButton
                 className="songMenuButton"
                 iconOnly
