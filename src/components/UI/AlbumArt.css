@@ -8,6 +8,7 @@
     height: var(--albumArtSize);
     overflow: hidden;
     transition: background-color 0.2s;
+    user-select: none;
 }
 .albumArtWrap::after {
     border-radius: 8px;
