@@ -55,14 +55,14 @@ code {
 }
 
 h1 {
-    margin: 4px 0 12px 0;
+    margin: 4px 0;
     font-size: 23pt;
 }
 
 h2 {
-    margin: 2px 0 8px 0;
+    margin: 2px 0;
     font-size: 17pt;
 }
 p {
-    margin: 2px 0 6px 0;
+    margin: 2px 0;
 }
