@@ -1,16 +1,17 @@
 import Page from "../components/Layout/Page/Page";
-import {
-    StackView,
-    StackGroup,
-} from "../components/Layout/StackView/StackView";
+import { StackView } from "../components/Layout/StackView/StackView";
 import SongItem from "../components/Views/SongItem";
 import pic from "../images/Album Art.jpg";
+import { mdiHomeOutline } from "@mdi/js";
+import PageTitle from "../components/Layout/Page/PageTitle";
 
 function Home() {
     return (
         <Page>
-            <StackView>
-                <StackGroup>
+            <PageTitle icon={mdiHomeOutline}>Home</PageTitle>
+            <section>
+                <h2>Recently played</h2>
+                <StackView>
                     <SongItem
                         title="Song 1"
                         artist="Artist 1"
@@ -36,8 +37,8 @@ function Home() {
                         albumArt={pic}
                         duration="4:20"
                     />
-                </StackGroup>
-            </StackView>
+                </StackView>
+            </section>
         </Page>
     );
 }

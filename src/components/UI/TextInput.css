@@ -1,0 +1,86 @@
+.textInput .textInputFrame {
+    position: relative;
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 12px;
+    transition: border-color 0.2s;
+}
+.textInput .textInputFrame.hintUp {
+    border-color: #ccc;
+}
+
+.textInput .textInputFrame .textInputBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.textInput .textInputFrame legend {
+    font-size: var(--secondary-font-size);
+    height: 0;
+    display: none;
+    opacity: 0;
+}
+.textInput .textInputFrame legend {
+    display: block;
+}
+
+.textInput .textInputFrame .placeholder {
+    position: absolute;
+    color: #fff;
+    font-size: var(--secondary-font-size);
+    top: -10px;
+    left: 14px;
+}
+
+.textInput .inputWrapper {
+    position: absolute;
+    flex: 2;
+    display: flex;
+}
+
+.textInput input {
+    flex: 2;
+    background-color: transparent;
+    color: inherit;
+    font-family: var(--primary-font);
+    font-size: var(--primary-font-size);
+    border: none;
+    outline: none;
+    height: 24px;
+}
+
+.textInput .textInputIcon {
+    margin: -4px 0 -4px -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textInput button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #ccc;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    padding: 4px;
+    margin: -8px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.textInput button svg {
+    transition: transform 0.2s;
+}
+.textInput button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.textInput button:active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.textInput button:active svg {
+    transform: scale(85%);
+}

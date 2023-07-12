@@ -4,15 +4,11 @@ function StackView({ children }) {
     return <div className="stackView">{children}</div>;
 }
 
-function StackGroup({ children }) {
-    return <div className="stackGroup">{children}</div>;
-}
-
 function StackItem({ className = "", focusable = true, onClick, children }) {
     return (
         <div
             className={
-                "stackItem " + (focusable ? "focusable " : "") + className
+                className + " stackItem " + (focusable ? "focusable" : "")
             }
             tabIndex={focusable ? 0 : -1}
             role={focusable ? "button" : ""}
@@ -23,4 +19,4 @@ function StackItem({ className = "", focusable = true, onClick, children }) {
     );
 }
 
-export { StackView, StackGroup, StackItem };
+export { StackView, StackItem };

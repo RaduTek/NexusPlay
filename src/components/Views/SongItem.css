@@ -8,32 +8,36 @@
     padding-left: 2px;
 }
 
-.songDetails .songTitle,
-.songDetails .songArtist,
-.songDetails .songAlbum {
+.songItem .songDetails .songTitle,
+.songItem .songDetails .songArtist,
+.songItem .songDetails .songAlbum {
     flex: 1;
     text-overflow: ellipsis;
 }
 
-.songDetails .songTitle {
+.songItem span.songDuration {
+    flex: 0;
+}
+
+.songItem .songDetails .songTitle {
     font-weight: bold;
 }
 
-.songDetails .songInfo {
+.songItem .songDetails .songInfo {
     flex: 2;
     display: flex;
     flex-direction: row;
     color: #bbb;
 }
 
-.songDetails .songInfo > span {
+.songItem .songDetails .songInfo > span {
     text-overflow: ellipsis;
     min-width: 0;
     overflow: hidden;
     white-space: nowrap;
 }
 
-.songDetails .infoSeparator {
+.songItem .songDetails .infoSeparator {
     display: none;
     margin: 0 6px;
 }
@@ -42,11 +46,11 @@
     .songItem .songDetails {
         flex-direction: column;
     }
-    .songDetails .songArtist,
-    .songDetails .songAlbum {
+    .songItem .songDetails .songArtist,
+    .songItem .songDetails .songAlbum {
         flex: initial;
     }
-    .songDetails .infoSeparator {
+    .songItem .songDetails .infoSeparator {
         display: initial;
     }
     .songItem .songAlbumArt {

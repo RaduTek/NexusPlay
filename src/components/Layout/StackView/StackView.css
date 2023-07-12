@@ -3,18 +3,9 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: baseline;
-    gap: 12px;
 }
 
-.stackGroup {
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.13);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stackItem {
+.stackView .stackItem {
     width: 100%;
     background-color: transparent;
     border: none;
@@ -29,18 +20,29 @@
     box-sizing: border-box;
     padding: 8px;
     gap: 8px;
+    border-radius: 8px;
+    position: relative;
     transition: background-color 0.2s;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.stackItem.focusable {
+.stackView .stackItem.focusable {
     user-select: none;
 }
-.stackItem:last-child {
-    border-bottom: none;
+.stackView .stackItem:not(:last-child)::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 6px;
+    right: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.stackItem.focusable:hover {
+
+.stackView .stackItem.focusable:active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.stackView .stackItem.focusable:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
-.stackItem.focusable:active {
-    background-color: rgba(255, 255, 255, 0.2);
+
+.stackView .stackItem > span {
+    flex: 1;
 }

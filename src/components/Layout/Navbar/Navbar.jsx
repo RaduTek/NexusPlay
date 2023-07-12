@@ -201,10 +201,22 @@ function Navbar() {
                     >
                         Now Playing
                     </SquareButton>
-                    <SquareButton vertical icon={mdiBookshelf}>
+                    <SquareButton
+                        vertical
+                        icon={mdiBookshelf}
+                        onClick={() => {
+                            navigate("/library");
+                        }}
+                    >
                         Library
                     </SquareButton>
-                    <SquareButton vertical icon={mdiAccountCircleOutline}>
+                    <SquareButton
+                        vertical
+                        icon={mdiAccountCircleOutline}
+                        onClick={() => {
+                            navigate("/account");
+                        }}
+                    >
                         Account
                     </SquareButton>
                 </div>
