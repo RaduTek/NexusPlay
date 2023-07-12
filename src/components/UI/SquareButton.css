@@ -36,11 +36,11 @@
     transition: transform 0.2s;
 }
 
-.app:not(.mobile) .squareButton:hover {
+#app.full .squareButton:hover {
     background-color: rgba(255, 255, 255, 0.12);
 }
-.squareButton:active,
-.squareButton.toggleOn {
+#app.all .squareButton:active,
+#app.all .squareButton.toggleOn {
     background-color: rgba(255, 255, 255, 0.2);
 }
 .squareButton:active > svg {
