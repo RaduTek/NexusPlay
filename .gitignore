@@ -28,3 +28,5 @@ yarn-error.log*
 *.ogg
 *.opus
 *.flac
+
+.vscode
