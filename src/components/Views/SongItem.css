@@ -15,7 +15,7 @@
     text-overflow: ellipsis;
 }
 
-.songItem .songDuration {
+.songItem span.songDuration {
     flex: 0;
 }
 
