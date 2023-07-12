@@ -24,7 +24,7 @@
     position: relative;
     transition: background-color 0.2s;
 }
-.stackItem.focusable {
+.stackView .stackItem.focusable {
     user-select: none;
 }
 .stackView .stackItem:not(:last-child)::after {
@@ -35,13 +35,14 @@
     right: 6px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.stackItem.focusable:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-.stackItem.focusable:active {
+
+.stackView .stackItem.focusable:active {
     background-color: rgba(255, 255, 255, 0.2);
 }
+.stackView .stackItem.focusable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
-.stackItem > span {
+.stackView .stackItem > span {
     flex: 1;
 }
