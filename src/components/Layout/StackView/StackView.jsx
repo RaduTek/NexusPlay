@@ -12,7 +12,7 @@ function StackItem({ className = "", focusable = true, onClick, children }) {
     return (
         <div
             className={
-                "stackItem " + (focusable ? "focusable " : "") + className
+                className + " stackItem " + (focusable ? "focusable" : "")
             }
             tabIndex={focusable ? 0 : -1}
             role={focusable ? "button" : ""}
