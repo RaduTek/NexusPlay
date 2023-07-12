@@ -15,7 +15,6 @@ function AppLayout() {
 
     useEffect(() => {
         setMobileView(windowSize.width <= 550);
-        console.log(windowSize.width);
     }, [windowSize, setMobileView]);
 
     return (
