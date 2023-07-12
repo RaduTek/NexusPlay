@@ -4,10 +4,6 @@ function StackView({ children }) {
     return <div className="stackView">{children}</div>;
 }
 
-function StackGroup({ children }) {
-    return <div className="stackGroup">{children}</div>;
-}
-
 function StackItem({ className = "", focusable = true, onClick, children }) {
     return (
         <div
@@ -23,4 +19,4 @@ function StackItem({ className = "", focusable = true, onClick, children }) {
     );
 }
 
-export { StackView, StackGroup, StackItem };
+export { StackView, StackItem };
