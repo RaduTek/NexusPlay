@@ -18,7 +18,7 @@ function AppLayout() {
     }, [windowSize, setMobileView]);
 
     return (
-        <div id="app" className={getMobileView ? "mobile" : ""}>
+        <div id="app" className={(getMobileView ? "mobile" : "full") + " all"}>
             <AudioPlayer />
             <Sidebar />
             <NowPlaying />
