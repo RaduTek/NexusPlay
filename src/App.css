@@ -57,11 +57,13 @@ code {
 h1 {
     margin: 4px 0;
     font-size: 23pt;
+    padding: 0 12px;
 }
 
 h2 {
     margin: 2px 0;
     font-size: 17pt;
+    padding: 0 8px;
 }
 p {
     margin: 2px 0;
