@@ -32,6 +32,11 @@
     --navbar-total-height: var(--navbar-height);
 }
 
+#app.nowPlayingOpen {
+    overflow: hidden;
+    height: 100vh;
+}
+
 html,
 body {
     overscroll-behavior: none;
