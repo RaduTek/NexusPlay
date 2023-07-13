@@ -39,6 +39,6 @@
     transform: scale(0.85);
 }
 
-.circleButton:hover:focus:not(:active) {
+.circleButton:focus:not(:active) {
     animation: border-highlight 1s;
 }

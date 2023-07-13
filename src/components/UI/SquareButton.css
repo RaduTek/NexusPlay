@@ -47,6 +47,6 @@
     transform: scale(0.85);
 }
 
-.squareButton:hover:focus:not(:active) {
+.squareButton:focus:not(:active) {
     animation: border-highlight 1s;
 }
