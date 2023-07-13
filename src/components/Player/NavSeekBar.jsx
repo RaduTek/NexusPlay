@@ -6,7 +6,6 @@ import {
     playerTotalTime,
 } from "../../Atoms";
 import "./NavSeekBar.css";
-export const PlaybackStatus = ["play", "pause", "ended"];
 
 function NavSeekBar() {
     const [seeking, setSeeking] = useState(false);

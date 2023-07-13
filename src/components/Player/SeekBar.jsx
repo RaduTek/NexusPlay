@@ -6,7 +6,7 @@ import {
     playerTotalTime,
 } from "../../Atoms";
 import "./SeekBar.css";
-export const PlaybackStatus = ["play", "pause", "ended"];
+import { formatTime } from "../../Globals";
 
 function SeekBar() {
     const [seeking, setSeeking] = useState(false);
@@ -73,8 +73,8 @@ function SeekBar() {
                 ></input>
             </div>
             <div className="timeStamps">
-                <span>0:00</span>
-                <span>4:20</span>
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(totalTime)}</span>
             </div>
         </div>
     );
