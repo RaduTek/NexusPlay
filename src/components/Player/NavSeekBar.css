@@ -14,6 +14,9 @@
     padding: 0 6px;
     display: flex;
 }
+#app.mobile .navSeekBar .progressBarWrapper {
+    padding: 0;
+}
 .navSeekBar .progressBar {
     flex-grow: 1;
     margin: 0;
@@ -23,7 +26,6 @@
     height: 3px;
     background-color: #303030;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s;
 }
 
 /* Chromium styling */
@@ -55,10 +57,9 @@
     width: 100%;
     height: 3px;
     background-color: transparent;
-    transition: transform 0.2s;
 }
 
-.navSeekBar .seekThumb::-webkit-slider-thumb {
+#app.full .navSeekBar .seekThumb::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
@@ -67,7 +68,14 @@
     background-color: var(--accent-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
-.navSeekBar .seekThumb::-moz-range-thumb {
+#app.mobile .navSeekBar .seekThumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+    opacity: 0;
+    visibility: 0;
+}
+#app.full .navSeekBar .seekThumb::-moz-range-thumb {
     width: 12px;
     height: 12px;
     border: none;
@@ -75,15 +83,22 @@
     background-color: var(--accent-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
+#app.mobile .navSeekBar .seekThumb::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+    opacity: 0;
+    visibility: 0;
+}
 
 /* Hovering effects */
-.navSeekBar:hover .progressBar {
+#app.full .navSeekBar:hover .progressBar {
     transform: scaleY(2);
 }
-.navSeekBar:hover .seekThumb::-webkit-slider-thumb {
+#app.full .navSeekBar:hover .seekThumb::-webkit-slider-thumb {
     transform: scale(1.25);
 }
-.navSeekBar:hover .seekThumb::-moz-range-thumb {
+#app.full .navSeekBar:hover .seekThumb::-moz-range-thumb {
     transform: scale(1.25);
 }
 
