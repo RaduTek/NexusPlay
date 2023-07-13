@@ -2,11 +2,7 @@ import "./Navbar.css";
 import NavSeekBar from "../../Player/NavSeekBar";
 import CircleButton from "../../UI/CircleButton";
 import {
-    mdiAccountCircleOutline,
-    mdiBookshelf,
     mdiDotsVertical,
-    mdiHomeOutline,
-    mdiMagnify,
     mdiPause,
     mdiPlay,
     mdiPlaylistMusicOutline,
@@ -17,211 +13,161 @@ import {
     mdiStop,
     mdiVolumeHigh,
 } from "@mdi/js";
-import SquareButton from "../../UI/SquareButton";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import {
     playerStatus,
-    nowPlayingVisible,
-    nowPlayingDragY,
+    mobilePlayingDragY,
+    viewType,
+    fullPlayingVisible,
+    mobilePlayingVisible,
 } from "../../../Atoms";
 import AlbumArt from "../../UI/AlbumArt";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useWindowSize } from "@uidotdev/usehooks";
+import { useRef, useState } from "react";
 
 function Navbar() {
+    const navbar = useRef(null);
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
-    const [getNowPlayingVisible, setNowPlayingVisible] =
-        useAtom(nowPlayingVisible);
-    const navigate = useNavigate();
+    const [getFullPlayingVisible, setFullPlayingVisible] =
+        useAtom(fullPlayingVisible);
+    const [getMobilePlayingVisible, setMobilePlayingVisible] =
+        useAtom(mobilePlayingVisible);
+    const getViewType = useAtomValue(viewType);
     const [dragStartY, setDragStartY] = useState(0);
-    const setDragCurrentY = useSetAtom(nowPlayingDragY);
+    const setDragCurrentY = useSetAtom(mobilePlayingDragY);
+    const windowSize = useWindowSize();
 
     const dragStart = (e) => {
-        if (window.innerWidth > 550) return;
-        setDragStartY(e.touches[0].clientY);
-        setDragCurrentY(e.touches[0].clientY);
+        if (getViewType !== "mobile") return;
+        const computedStyle = getComputedStyle(navbar.current);
+        const navbarTotalHeight =
+            Number(
+                computedStyle
+                    .getPropertyValue("--navbar-height")
+                    .replace("px", "")
+            ) +
+            Number(
+                computedStyle
+                    .getPropertyValue("--navbar-mobile-height")
+                    .replace("px", "")
+            );
+        const startPoint = windowSize.height - navbarTotalHeight;
+        setDragStartY(startPoint);
+        setDragCurrentY(startPoint);
     };
     const dragMove = (e) => {
-        if (window.innerWidth > 550) return;
+        if (getViewType !== "mobile") return;
         if (
-            !getNowPlayingVisible &&
-            dragStartY - e.changedTouches[0].clientY > 40
+            !getMobilePlayingVisible &&
+            e.changedTouches[0].clientY < dragStartY
         )
-            setNowPlayingVisible(true);
-        setDragCurrentY(e.changedTouches[0].clientY);
+            setMobilePlayingVisible(true);
+        setDragCurrentY(Math.min(e.changedTouches[0].clientY, dragStartY));
     };
     const dragEnd = (e) => {
-        if (window.innerWidth > 550) return;
+        if (getViewType !== "mobile") return;
         if (
             dragStartY - e.changedTouches[0].clientY <
             window.innerHeight / 3.5
         ) {
-            setNowPlayingVisible(false);
+            setMobilePlayingVisible(false);
         }
         setDragCurrentY(0);
         setDragStartY(0);
     };
 
     return (
-        <>
-            <div
-                className="navbar"
-                id="navbar"
-                onTouchStart={dragStart}
-                onTouchMove={dragMove}
-                onTouchEnd={dragEnd}
-            >
-                <NavSeekBar />
-                <div className="navbarButtons">
-                    <div className="navbarLeft">
-                        <AlbumArt />
+        <div
+            ref={navbar}
+            className="navbar"
+            id="navbar"
+            onTouchStart={dragStart}
+            onTouchMove={dragMove}
+            onTouchEnd={dragEnd}
+        >
+            {!getMobilePlayingVisible && <NavSeekBar />}
+            <div className="navbarButtons">
+                <div className="navbarLeft">
+                    <AlbumArt />
+                </div>
+                <div className="navbarNowPlaying">
+                    <div className="navbarMediaInfo">
+                        <div className="navbarSongTitle">Song Title</div>
+                        <div className="navbarSongInfo">Artist - Album</div>
                     </div>
-                    <div className="navbarNowPlaying">
-                        <div className="navbarMediaInfo">
-                            <div className="navbarSongTitle">Song Title</div>
-                            <div className="navbarSongInfo">Artist - Album</div>
-                        </div>
+                </div>
+                <div className="navbarCenter">
+                    <div className="navbarControlsTertiary">
+                        <CircleButton iconOnly icon={mdiRepeat} iconSize={1}>
+                            Repeat
+                        </CircleButton>
                     </div>
-                    <div className="navbarCenter">
-                        <div className="navbarControlsTertiary">
-                            <CircleButton
-                                iconOnly
-                                icon={mdiRepeat}
-                                iconSize={1}
-                            >
-                                Repeat
-                            </CircleButton>
-                        </div>
-                        <div className="navbarControlsPrimary">
-                            <CircleButton
-                                iconOnly
-                                icon={mdiSkipPreviousOutline}
-                            >
-                                Previous
-                            </CircleButton>
-                            <CircleButton
-                                iconOnly
-                                icon={
-                                    getPlayerStatus === 0
-                                        ? mdiPause
-                                        : getPlayerStatus === 1
-                                        ? mdiPlay
-                                        : mdiStop
-                                }
-                                iconSize={1.6}
-                                onClick={() => {
-                                    setPlayerStatus(
-                                        getPlayerStatus === 0 ? 1 : 0
-                                    );
-                                }}
-                            >
-                                Play
-                            </CircleButton>
-                            <CircleButton iconOnly icon={mdiSkipNextOutline}>
-                                Next
-                            </CircleButton>
-                        </div>
-                        <div className="navbarControlsTertiary">
-                            <CircleButton
-                                iconOnly
-                                icon={mdiShuffle}
-                                iconSize={1}
-                            >
-                                Shuffle
-                            </CircleButton>
-                        </div>
-                    </div>
-                    <div className="navbarAlt">
-                        <CircleButton
-                            iconOnly
-                            icon={mdiDotsVertical}
-                            iconSize={1.1}
-                            tooltip="Menu"
-                            tooltipPosition="topRight"
-                        >
-                            Menu
+                    <div className="navbarControlsPrimary">
+                        <CircleButton iconOnly icon={mdiSkipPreviousOutline}>
+                            Previous
                         </CircleButton>
                         <CircleButton
                             iconOnly
-                            icon={mdiVolumeHigh}
-                            iconSize={1.1}
-                            tooltip="Volume"
-                            tooltipPosition="topRight"
-                        >
-                            Volume
-                        </CircleButton>
-                    </div>
-                    <div className="navbarRight navbarControlsSecondary">
-                        <CircleButton
-                            iconOnly
-                            icon={mdiPlaylistMusicOutline}
-                            tooltip="Now Playing"
-                            tooltipPosition="topRight"
-                            toggle={getNowPlayingVisible}
+                            icon={
+                                getPlayerStatus === 0
+                                    ? mdiPause
+                                    : getPlayerStatus === 1
+                                    ? mdiPlay
+                                    : mdiStop
+                            }
+                            iconSize={1.6}
                             onClick={() => {
-                                setNowPlayingVisible(!getNowPlayingVisible);
+                                setPlayerStatus(getPlayerStatus === 0 ? 1 : 0);
                             }}
                         >
-                            Now Playing
+                            Play
+                        </CircleButton>
+                        <CircleButton iconOnly icon={mdiSkipNextOutline}>
+                            Next
+                        </CircleButton>
+                    </div>
+                    <div className="navbarControlsTertiary">
+                        <CircleButton iconOnly icon={mdiShuffle} iconSize={1}>
+                            Shuffle
                         </CircleButton>
                     </div>
                 </div>
-            </div>
-            <div
-                className="mobileNavbar"
-                onTouchStart={dragStart}
-                onTouchMove={dragMove}
-                onTouchEnd={dragEnd}
-            >
-                <div className="navbarButtons">
-                    <SquareButton
-                        vertical
-                        icon={mdiHomeOutline}
-                        onClick={() => {
-                            navigate("/home");
-                        }}
+                <div className="navbarAlt">
+                    <CircleButton
+                        iconOnly
+                        icon={mdiDotsVertical}
+                        iconSize={1.1}
+                        tooltip="Menu"
+                        tooltipPosition="topRight"
                     >
-                        Home
-                    </SquareButton>
-                    <SquareButton
-                        vertical
-                        icon={mdiMagnify}
-                        onClick={() => {
-                            navigate("/search");
-                        }}
+                        Menu
+                    </CircleButton>
+                    <CircleButton
+                        iconOnly
+                        icon={mdiVolumeHigh}
+                        iconSize={1.1}
+                        tooltip="Volume"
+                        tooltipPosition="topRight"
                     >
-                        Search
-                    </SquareButton>
-                    <SquareButton
-                        vertical
+                        Volume
+                    </CircleButton>
+                </div>
+                <div className="navbarRight navbarControlsSecondary">
+                    <CircleButton
+                        iconOnly
                         icon={mdiPlaylistMusicOutline}
+                        tooltip="Now Playing"
+                        tooltipPosition="topRight"
+                        toggle={getFullPlayingVisible}
                         onClick={() => {
-                            setNowPlayingVisible(!getNowPlayingVisible);
+                            setFullPlayingVisible(!getFullPlayingVisible);
                         }}
                     >
                         Now Playing
-                    </SquareButton>
-                    <SquareButton
-                        vertical
-                        icon={mdiBookshelf}
-                        onClick={() => {
-                            navigate("/library");
-                        }}
-                    >
-                        Library
-                    </SquareButton>
-                    <SquareButton
-                        vertical
-                        icon={mdiAccountCircleOutline}
-                        onClick={() => {
-                            navigate("/account");
-                        }}
-                    >
-                        Account
-                    </SquareButton>
+                    </CircleButton>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

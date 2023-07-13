@@ -11,44 +11,16 @@
     display: flex;
     flex-direction: column;
     transition: background-color 1s, color 1s; /* Light to dark mode transition */
+    touch-action: none;
 }
 
-.mobileNavbar {
-    z-index: 999;
-    visibility: hidden;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: var(--navbar-mobile-height);
-    background-color: var(--navbar-mobile-back-color);
-    color: var(--navbar-mobile-fore-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    transition: background-color 1s, color 1s; /* Light to dark mode transition */
-}
-
-.mobileNavbar .squareButton {
-    flex: auto;
-}
-@media screen and (min-width: 460px) {
-    .mobileNavbar .squareButton {
-        flex: 1;
-    }
-}
-
-.navbarButtons {
+.navbar .navbarButtons {
     flex: 1;
     display: flex;
     flex-direction: row;
     padding: 12px;
     padding-top: 11px;
     gap: 12px;
-}
-.mobileNavbar .navbarButtons {
-    padding: 4px;
-    gap: 4px;
 }
 
 .navbarControlsPrimary,
@@ -100,6 +72,18 @@
 }
 
 /* Mobile layout */
+#app.mobile {
+    --navbar-total-height: calc(
+        var(--navbar-height) + var(--navbar-mobile-height)
+    ) !important;
+}
+
+#app.mobile .navbar {
+    /* Offset main navbar to fit mobile navbar below */
+    bottom: var(--navbar-mobile-height);
+}
+
+/* Flexible layout */
 @media screen and (max-width: 900px) {
     .navbarAlt {
         display: none !important;
@@ -112,21 +96,6 @@
     }
 }
 @media screen and (max-width: 550px) {
-    :root {
-        --navbar-total-height: calc(
-            var(--navbar-height) + var(--navbar-mobile-height)
-        ) !important;
-    }
-
-    .mobileNavbar {
-        visibility: visible;
-    }
-
-    .navbar {
-        /* Offset main navbar to fit mobile navbar below */
-        bottom: var(--navbar-mobile-height);
-    }
-
     .navbarAlt,
     .navbarControlsSecondary,
     .navbarControlsTertiary {
