@@ -6,7 +6,7 @@
 }
 
 @media screen and (min-width: 900px) {
-    .pageHost.nowPlayingVisible {
+    #app.fullPlayingOpen .pageHost {
         padding-right: var(--nowplaying-desktop-width);
     }
 }
