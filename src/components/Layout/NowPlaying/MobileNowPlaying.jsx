@@ -1,6 +1,6 @@
-import "./NowPlaying.css";
+import "./MobileNowPlaying.css";
 import {
-    mdiChevronRight,
+    mdiChevronDown,
     mdiDotsVertical,
     mdiHeartOutline,
     mdiPause,
@@ -17,20 +17,18 @@ import { TabPage, TabView } from "../TabView/TabView";
 import { useAtom } from "jotai";
 import {
     playerStatus,
-    nowPlayingVisible,
-    nowPlayingDragY,
+    mobilePlayingVisible,
+    mobilePlayingDragY,
 } from "../../../Atoms";
 import SeekBar from "../../Player/SeekBar";
 import { useState } from "react";
-import { useWindowSize } from "@uidotdev/usehooks";
 import sampleAlbumArt from "../../../images//Album Art.jpg";
 
-function NowPlaying() {
+function MobileNowPlaying() {
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
-    const [isVisible, setVisible] = useAtom(nowPlayingVisible);
+    const [isVisible, setVisible] = useAtom(mobilePlayingVisible);
     const [dragStartY, setDragStartY] = useState(0);
-    const [dragCurrentY, setDragCurrentY] = useAtom(nowPlayingDragY);
-    const windowSize = useWindowSize();
+    const [dragCurrentY, setDragCurrentY] = useAtom(mobilePlayingDragY);
 
     const dragStart = (e) => {
         if (window.innerWidth > 550) return;
@@ -74,7 +72,7 @@ function NowPlaying() {
                 <div className="buttonsLeft">
                     <CircleButton
                         className="nowPlayingHideBtn"
-                        icon={mdiChevronRight}
+                        icon={mdiChevronDown}
                         iconSize={1.2}
                         iconOnly
                         padding={4}
@@ -96,15 +94,9 @@ function NowPlaying() {
                     </CircleButton>
                 </div>
             </div>
-            <TabView
-                align="bottom"
-                defaultPage={windowSize.width > 550 ? 1 : 0}
-            >
-                <TabPage
-                    title="Now Playing"
-                    className="nowPlayingPage"
-                    hidden={windowSize.width > 550}
-                >
+            <TabView align="bottom" defaultPage={1}>
+                <TabPage title="Lyrics">Lyrics</TabPage>
+                <TabPage title="Now Playing" className="nowPlayingPage">
                     <div
                         className="nowPlayingPage"
                         onTouchStart={dragStart}
@@ -207,10 +199,9 @@ function NowPlaying() {
                     </div>
                 </TabPage>
                 <TabPage title="Playlist">Playlist</TabPage>
-                <TabPage title="Lyrics">Lyrics</TabPage>
             </TabView>
         </div>
     );
 }
 
-export default NowPlaying;
+export default MobileNowPlaying;

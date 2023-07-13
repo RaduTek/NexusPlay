@@ -1,20 +1,20 @@
 .nowPlaying {
-    z-index: 990;
+    z-index: 1000;
+    width: 100%;
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
-    bottom: var(--navbar-total-height);
-    width: var(--nowplaying-desktop-width);
+    bottom: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     background-color: #262626;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, visibility 0.3s;
+    transition: transform 0.4s, visibility 0.4s;
 }
 
 .nowPlaying.hidden {
-    transform: translateX(100%);
+    transform: translateY(calc(100vh - var(--navbar-total-height)));
     visibility: hidden;
 }
 .nowPlaying.hidden .tabPage {
@@ -130,19 +130,4 @@
     justify-content: space-around;
     align-items: center;
     gap: auto;
-}
-
-@media screen and (max-width: 550px) {
-    .nowPlaying {
-        z-index: 1000;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }
-    .nowPlaying.hidden {
-        transform: translateY(100%);
-    }
-    .nowPlaying .nowPlayingHideBtn > svg {
-        transform: rotate(90deg);
-    }
 }
