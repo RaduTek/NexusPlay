@@ -83,6 +83,7 @@ function MobileNowPlaying() {
                         Hide
                     </CircleButton>
                 </div>
+                <div className="topLabel">Now Playing</div>
                 <div className="buttonsRight">
                     <CircleButton
                         icon={mdiDotsVertical}

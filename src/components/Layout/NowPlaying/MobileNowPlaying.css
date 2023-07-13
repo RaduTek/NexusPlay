@@ -24,7 +24,8 @@
 .nowPlaying .topButtons {
     display: flex;
     flex-direction: row;
-    padding: 8px;
+    align-items: center;
+    padding: 12px 12px 0;
 }
 
 .nowPlaying .topButtons .buttonsLeft,
@@ -35,6 +36,10 @@
 }
 .nowPlaying .topButtons .buttonsRight {
     justify-content: end;
+}
+
+.nowPlaying .topButtons .topLabel {
+    color: #aaa;
 }
 
 .nowPlaying .tabView {
@@ -106,16 +111,24 @@
     padding: 0 30px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .nowPlayingPage .songDetails .songDetailsText {
     padding-top: 4px;
+    max-width: 75%;
     flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8px;
+}
+.nowPlayingPage .songDetails .songDetailsText span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .nowPlayingPage .songDetails .songTitle {
