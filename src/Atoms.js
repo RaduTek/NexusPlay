@@ -1,11 +1,13 @@
 import { atom } from "jotai";
 
-export const mobileView = atom(false);
+export const viewType = atom("full");
 
 export const playerStatus = atom(1); // Paused
 export const playerCurrentTime = atom(0);
 export const playerSeekTime = atom(0);
 export const playerTotalTime = atom(0);
 
-export const nowPlayingDragY = atom(0);
-export const nowPlayingVisible = atom(false);
+export const mobilePlayingDragY = atom(0);
+export const mobilePlayingVisible = atom(false);
+
+export const fullPlayingVisible = atom(false);
