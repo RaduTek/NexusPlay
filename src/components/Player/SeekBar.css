@@ -1,11 +1,10 @@
 .seekBarWrap {
     display: flex;
     flex-direction: column;
-    padding: 18px 16px 0;
 }
 
 .timeStamps {
-    padding: 4px 6px 0;
+    padding: 8px 5px 0;
     display: flex;
     flex-direction: row;
     font-size: var(--secondary-font-size);
