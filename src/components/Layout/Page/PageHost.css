@@ -11,8 +11,6 @@
     }
 }
 
-@media screen and (min-width: 550px) {
-    .pageHost {
-        padding-left: var(--sidebar-desktop-width);
-    }
+#app.full .pageHost {
+    padding-left: var(--sidebar-desktop-width);
 }
