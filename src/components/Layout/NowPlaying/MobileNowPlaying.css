@@ -47,26 +47,17 @@
 }
 
 .nowPlaying .nowPlayingPage {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
+    gap: 20px;
     overflow: hidden !important;
 }
 
-.nowPlayingPage .albumArtList {
-    position: relative;
-}
-
-.nowPlayingPage .albumArtList .albumArtFrame {
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding: 0 10%;
-    border-radius: 12px;
-    width: min(100%, 60vh);
-}
-@media screen and (max-height: 720px) {
+/* @media screen and (max-height: 720px) {
     .nowPlayingPage .albumArtList .albumArtFrame {
         width: 50vh;
     }
@@ -88,15 +79,33 @@
     .nowPlayingPage .playbackControls {
         padding-top: 0;
     }
+} */
+
+.nowPlayingPage .albumArtList {
+    display: flex;
+    flex-direction: row;
+}
+
+.nowPlayingPage .albumArtList .albumArtFrame {
+    width: 100vw;
 }
 
 .albumArtList .albumArtFrame .albumArtInner {
+    box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 12px;
     aspect-ratio: 1 / 1;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1),
         0 2px 10px rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
     overflow: hidden;
+    width: 82%;
+}
+
+@media screen and (min-aspect-ratio: 13/20) {
+    .albumArtList .albumArtFrame .albumArtInner {
+        width: calc(85vh - 260px);
+    }
 }
 
 .albumArtList .albumArtFrame .albumArtInner img {
@@ -104,25 +113,27 @@
 }
 
 .nowPlayingPage .playbackControls {
-    padding-top: 24px;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
 }
 
 .nowPlayingPage .songDetails {
-    padding: 0 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 24px;
 }
 
 .nowPlayingPage .songDetails .songDetailsText {
-    padding-top: 4px;
+    padding-top: 8px;
     max-width: 75%;
     flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 .nowPlayingPage .songDetails .songDetailsText span {
     max-width: 100%;
@@ -133,11 +144,11 @@
 
 .nowPlayingPage .songDetails .songTitle {
     font-weight: bold;
-    font-size: 18pt;
+    font-size: 16pt;
 }
 
 .nowPlayingPage .playbackButtons {
-    padding: 10px 36px 0;
+    /* padding: 10px 36px 0; */
     display: flex;
     flex-direction: row;
     justify-content: space-around;

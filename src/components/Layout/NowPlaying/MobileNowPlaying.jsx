@@ -23,41 +23,79 @@ import {
 import SeekBar from "../../Player/SeekBar";
 import { useState } from "react";
 import sampleAlbumArt from "../../../images//Album Art.jpg";
+import sampleAlbumArt2 from "../../../images//Album Art 2.jpg";
+import sampleAlbumArt3 from "../../../images//Album Art 3.jpg";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 function MobileNowPlaying() {
+    const windowSize = useWindowSize();
     const [getPlayerStatus, setPlayerStatus] = useAtom(playerStatus);
     const [isVisible, setVisible] = useAtom(mobilePlayingVisible);
-    const [dragStartY, setDragStartY] = useState(0);
-    const [dragCurrentY, setDragCurrentY] = useAtom(mobilePlayingDragY);
+    const [paneDragY, setPaneDragY] = useAtom(mobilePlayingDragY);
 
-    const dragStart = (e) => {
-        if (window.innerWidth > 550) return;
-        setDragStartY(e.touches[0].clientY);
-        setDragCurrentY(0);
+    const [dragStartPt, setDragStartPt] = useState({ x: 0, y: 0 });
+    const [artSwipeCurrentX, setArtSwipeCurrentX] = useState(0);
+
+    const paneDragStart = (e) => {
+        setDragStartPt({ x: e.touches[0].clientX, y: e.touches[0].clientY });
     };
-    const dragMove = (e) => {
-        if (window.innerWidth > 550) return;
-        setDragCurrentY(e.changedTouches[0].clientY - dragStartY);
+    const paneDragMove = (e) => {
+        const dragCurrentPt = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+        setPaneDragY(dragCurrentPt.y - dragStartPt.y);
     };
-    const dragEnd = (e) => {
-        if (window.innerWidth > 550) return;
-        if (
-            e.changedTouches[0].clientY - dragStartY >
-            window.innerHeight / 3.5
-        ) {
+    const paneDragEnd = (e) => {
+        const dragCurrentPt = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+        if (dragCurrentPt.y - dragStartPt.y > window.innerHeight / 3) {
             setVisible(false);
         }
-        setDragCurrentY(0);
-        setDragStartY(0);
+        setPaneDragY(0);
+        setDragStartPt({ x: 0, y: 0 });
+    };
+
+    const artDragStart = (e) => {
+        e.stopPropagation();
+        setDragStartPt({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+    };
+    const artDragMove = (e) => {
+        e.stopPropagation();
+        const dragCurrentPt = {
+            x: e.changedTouches[0].clientX,
+            y: e.changedTouches[0].clientY,
+        };
+        if (
+            Math.abs(dragStartPt.x - dragCurrentPt.x) >
+            Math.abs(dragStartPt.y - dragCurrentPt.y)
+        ) {
+            setPaneDragY(0);
+            const swipeDelta = dragCurrentPt.x - dragStartPt.x;
+            // console.log(swipeDelta);
+            if (Math.abs(swipeDelta) <= windowSize.width)
+                setArtSwipeCurrentX(swipeDelta);
+        } else if (artSwipeCurrentX === 0) {
+            setPaneDragY(dragCurrentPt.y - dragStartPt.y);
+        }
+    };
+    const artDragEnd = (e) => {
+        if (artSwipeCurrentX !== 0) {
+            e.stopPropagation();
+            setArtSwipeCurrentX(0);
+            setDragStartPt({ x: 0, y: 0 });
+        }
     };
 
     return (
         <div
             className={"nowPlaying " + (isVisible ? "" : "hidden")}
             style={
-                dragCurrentY > 0
+                paneDragY > 0
                     ? {
-                          transform: "translateY(" + dragCurrentY + "px)",
+                          transform: "translateY(" + paneDragY + "px)",
                           transition: "none",
                       }
                     : {}
@@ -65,9 +103,9 @@ function MobileNowPlaying() {
         >
             <div
                 className="topButtons"
-                onTouchStart={dragStart}
-                onTouchMove={dragMove}
-                onTouchEnd={dragEnd}
+                onTouchStart={paneDragStart}
+                onTouchMove={paneDragMove}
+                onTouchEnd={paneDragEnd}
             >
                 <div className="buttonsLeft">
                     <CircleButton
@@ -100,14 +138,45 @@ function MobileNowPlaying() {
                 <TabPage title="Now Playing" className="nowPlayingPage">
                     <div
                         className="nowPlayingPage"
-                        onTouchStart={dragStart}
-                        onTouchMove={dragMove}
-                        onTouchEnd={dragEnd}
+                        onTouchStart={paneDragStart}
+                        onTouchMove={paneDragMove}
+                        onTouchEnd={paneDragEnd}
                     >
-                        <div className="albumArtList">
+                        <div
+                            className="albumArtList"
+                            onTouchStart={artDragStart}
+                            onTouchMove={artDragMove}
+                            onTouchEnd={artDragEnd}
+                            style={
+                                artSwipeCurrentX !== 0
+                                    ? {
+                                          transform:
+                                              "translateX(" +
+                                              artSwipeCurrentX +
+                                              "px)",
+                                      }
+                                    : {}
+                            }
+                        >
+                            <div className="albumArtFrame">
+                                <div className="albumArtInner">
+                                    <img
+                                        alt="Album Art"
+                                        src={sampleAlbumArt2}
+                                    />
+                                </div>
+                            </div>
                             <div className="albumArtFrame">
                                 <div className="albumArtInner">
                                     <img alt="Album Art" src={sampleAlbumArt} />
+                                </div>
+                            </div>
+                            <div className="albumArtFrame">
+                                <div className="albumArtInner">
+                                    <img
+                                        alt="Album Art"
+                                        src={sampleAlbumArt3}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -117,7 +186,7 @@ function MobileNowPlaying() {
                                     <CircleButton
                                         icon={mdiPlaylistPlus}
                                         iconOnly
-                                        iconSize={1.3}
+                                        iconSize={1.2}
                                     >
                                         Add to playlist
                                     </CircleButton>
@@ -127,13 +196,12 @@ function MobileNowPlaying() {
                                         Song Title
                                     </span>
                                     <span>Song Artist</span>
-                                    <span>Song Album</span>
                                 </div>
                                 <div>
                                     <CircleButton
                                         icon={mdiHeartOutline}
                                         iconOnly
-                                        iconSize={1.3}
+                                        iconSize={1.2}
                                     >
                                         Add to favourites
                                     </CircleButton>
@@ -168,8 +236,8 @@ function MobileNowPlaying() {
                                             ? mdiPlay
                                             : mdiStop
                                     }
-                                    iconSize={2.2}
-                                    padding={14}
+                                    iconSize={1.8}
+                                    padding={16}
                                     onClick={() => {
                                         setPlayerStatus(
                                             getPlayerStatus === 0 ? 1 : 0
