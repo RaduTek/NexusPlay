@@ -1,7 +1,5 @@
 :root {
-    --primary-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    --primary-font: "Lato", sans-serif;
     --primary-font-size: 11pt;
     --secondary-font-size: 10pt;
 
