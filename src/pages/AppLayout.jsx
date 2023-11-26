@@ -16,7 +16,7 @@ function AppLayout() {
     const isNowPlayingVisible = useAtomValue(mobilePlayingVisible);
 
     useEffect(() => {
-        setViewType(windowSize.width <= 550 ? "mobile" : "full");
+        setViewType(windowSize.width <= 700 ? "mobile" : "full");
     }, [windowSize, setViewType]);
 
     return (
